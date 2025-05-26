@@ -2,113 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software Developer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Koushik | Software Developer Portfolio</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
     }
+
     header {
-      background-color: #333;
-      color: white;
-      padding: 20px;
+      background: #111;
+      color: #fff;
+      padding: 2rem;
       text-align: center;
     }
+
     nav {
-      background-color: #444;
-      color: white;
-      padding: 10px;
-      text-align: center;
+      margin-top: 1rem;
     }
+
     nav a {
-      color: white;
-      margin: 0 10px;
+      margin: 0 1rem;
+      color: #0cf;
       text-decoration: none;
+      font-weight: bold;
     }
+
     section {
-      padding: 20px;
+      padding: 3rem 2rem;
+      max-width: 800px;
+      margin: auto;
     }
-    .project, .experience {
-      background: white;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+
+    h1, h2 {
+      color: #111;
     }
+
+    .project {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background: #fff;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skill {
+      background: #eee;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
     footer {
-      background-color: #333;
-      color: white;
       text-align: center;
-      padding: 10px;
+      padding: 2rem;
+      background: #222;
+      color: #fff;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #0cf;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Your Name</h1>
-    <p>Aspiring Software Developer</p>
+    <h1>Koushik</h1>
+    <p>Aspiring Software Developer | JavaScript • Flutter • Backend</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  
+
   <section id="about">
     <h2>About Me</h2>
-    <p>Short professional summary about your goals and interests.</p>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Languages: JavaScript, Python, Dart</li>
-      <li>Frameworks: React, Flutter, Django</li>
-      <li>Tools: Git, Docker, Firebase</li>
-      <li>Databases: MySQL, MongoDB</li>
-    </ul>
+    <p>
+      I'm a passionate software developer currently building projects in web and mobile tech.
+      I enjoy solving real-world problems through code and learning new technologies.
+    </p>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
     <div class="project">
-      <h3>Project Name</h3>
-      <p>Brief description of the project and what it does.</p>
-      <p><strong>Tech Stack:</strong> React, Node.js, MongoDB</p>
-      <p><a href="#">GitHub</a> | <a href="#">Live Demo</a></p>
+      <h3>Library App (Flutter)</h3>
+      <p>Built a school library management app using Flutter with pagination and AZ index bar.</p>
+      <a href="https://github.com/koushik2654" target="_blank" class="button">View on GitHub</a>
     </div>
-    <!-- Repeat project block as needed -->
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="experience">
-      <h3>Job Title - Company</h3>
-      <p>Duration</p>
-      <p>Description of your role and accomplishments.</p>
+    <div class="project">
+      <h3>Fitness Tracker (React)</h3>
+      <p>A gym-focused web app to track workouts, goals, and diet with responsive UI.</p>
+      <a href="#" target="_blank" class="button">View Live</a>
     </div>
   </section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <p>Degree - University Name (Year)</p>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">Flutter</div>
+      <div class="skill">Dart</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">React</div>
+      <div class="skill">Node.js</div>
+      <div class="skill">Firebase</div>
+      <div class="skill">MongoDB</div>
+    </div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: your.email@example.com</p>
-    <p>GitHub: github.com/yourusername</p>
-    <p>LinkedIn: linkedin.com/in/yourusername</p>
+    <p>Email: <a href="mailto:koushik@example.com">koushik@example.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/koushik2654/" target="_blank">linkedin.com/in/koushik2654</a></p>
+    <a href="Koushik_Resume.pdf" class="button" download>Download Resume</a>
   </section>
 
   <footer>
-    <p>&copy; 2025 Your Name. All rights reserved.</p>
+    <p>© 2025 Koushik • All Rights Reserved</p>
   </footer>
+
 </body>
 </html>
