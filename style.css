@@ -8,7 +8,7 @@ body {
 /* Top bar container */
 .topbar {
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: space-between;
   padding: 1rem 2rem;
   background-color: #fff;
@@ -436,4 +436,241 @@ a.button {
 
 .show {
   display: block;
+}
+
+.skills-section {
+  padding: 60px 20px;
+  background-color: #f6f9fc;
+  text-align: left;
+}
+
+.skills-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.skill-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-left: 5px solid #7d00ff;
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+}
+
+.skill-card h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skill-tags span {
+  background-color: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+}
+.skills-section {
+  padding: 60px 20px;
+}
+
+.skills-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skills-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3b82f6;
+  margin-bottom: 30px;
+  text-align: left; /* Align to the first box */
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #7d00ff;
+}
+
+.skill-card h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #6b21a8;
+  margin-bottom: 10px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tags span {
+  background: #e5e7eb;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+}
+
+
+.timeline-section {
+  padding: 60px 20px;
+  background-color: #f5f8fc;
+  text-align: center;
+}
+
+.timeline-section h2 {
+  font-size: 32px;
+  margin-bottom: 60px;
+}
+
+.timeline-wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.timeline-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: #7d00ff;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+}
+
+.timeline-container {
+  padding: 20px 40px;
+  position: relative;
+  width: 50%;
+}
+
+.timeline-container::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  background: #fff;
+  border: 4px solid #7d00ff;
+  top: 30px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-container.right::after {
+  left: -8px;
+}
+
+.timeline-container.left {
+  left: 0;
+}
+
+.timeline-container.right {
+  left: 50%;
+}
+
+.timeline-container {
+  padding: 20px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.timeline-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 90%; /* ✅ Prevent it from crossing center */
+  margin: 0 auto;
+  text-align: left;
+  border-left: 5px solid #4c00cc;
+}
+
+.timeline-container.right .timeline-content {
+  border-left: none;
+  border-right: 5px solid #4c00cc;
+  text-align: left;
+}
+
+.exp-title {
+  color: #4c00cc;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.exp-subtitle {
+  color: #007bff;
+  font-style: italic;
+  margin: 8px 0 16px;
+}
+
+.timeline-content ul {
+  padding-left: 20px;
+}
+
+.timeline-content ul li {
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .timeline-container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .timeline-container.right {
+    left: 0;
+  }
+
+  .timeline-wrapper::after {
+    left: 31px;
+  }
+
+  .timeline-container::after {
+    left: 18px;
+  }
+
+  .timeline-container.right .timeline-content {
+    border-right: none;
+    border-left: 5px solid #4c00cc;
+  }
 }
