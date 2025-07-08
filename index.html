@@ -4,155 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Koushik | Software Developer Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    header {
-      background: #fffefedb;
-      color: #0c0a0a;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    nav {
-      margin-top: 1rem;
-    }
-
-    nav a {
-      margin: 0 1rem;
-      color: #0cf;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    section {
-      padding: 3rem 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    h1, h2 {
-      color: #111;
-    }
-
-    .project {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      background: #fff;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .skill {
-      background: #eee;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #222;
-      color: #fff;
-    }
-
-    a.button {
-      display: inline-block;
-      margin-top: 1rem;
-      background: #0cf;
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-  <header>
-    <h1>Koushik RV</h1>
-    <p>Aspiring Software Developer</p> 
-    <p>Python • Flutter • GraphQl • DSA • C++ </p>
-    <nav>
-      <a href="#About">About</a>
-      <a href="#Projects">Projects</a>
-      <a href="#Achievements">Achievements</a>
-      <a href="#Skills">Skills</a>
-      <a href="#Certificates">Certificates</a>
-      <a href="#Contact">Contact</a>
-    </nav>
-  </header>
+<header class="topbar">
+  <div class="logo">Koushik <strong>RV</strong></div>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Hi, I’m venkata koushik R ,a passionate Software developer and a Computer Science Engineering student at presidency university. 
-      With hands-on experience in Flutter, C++,python and Data Structures & Algorithms, I specialize in creating efficient, scalable, and user-friendly mobile applications.
-    </p>
-  </section>
+  <nav class="nav-links">
+    <a href="#Home" class="active">Home</a>
+    <a href="#About">About</a>
+    <a href="#Skills">Skills</a>
+    <a href="#Projects">Projects</a>
+    <a href="#Experience">Experience</a>
+    <a href="#Contact">Contact</a>
+  </nav>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Library App (Flutter)</h3>
-      <p>Built a school library management app using Flutter with pagination and AZ index bar.</p>
-      <a href="https://github.com/koushik2654" target="_blank" class="button">View on GitHub</a>
-    </div>
-    <div class="project">
-      <h3>Fitness Tracker (React)</h3>
-      <p>A gym-focused web app to track workouts, goals, and diet with responsive UI.</p>
-      <a href="#" target="_blank" class="button">View Live</a>
-    </div>
-  </section>
+  <div class="toggle-theme">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+</header>
 
-  <section id="Achievements">
-    <h2>Achievements</h2>
-    <p>
-     Solved 50 Leetcode questions.
-    </p>
-  </section>
+<script>
+  function toggleMoreText() {
+    const moreText = document.getElementById("more-text");
+    const readMoreBtn = document.getElementById("readMoreBtn");
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill">Flutter</div>
-      <div class="skill">Dart</div>
-      <div class="skill">Html/Css</div>
-      <div class="skill">Tensorflow</div>
-      <div class="skill">Firebase</div>
-      <div class="skill">Streamlit</div>
-    </div>
-  </section>
+    if (moreText.classList.contains("show")) {
+      moreText.classList.remove("show");
+      readMoreBtn.style.display = "inline-block";
+    } else {
+      moreText.classList.add("show");
+      readMoreBtn.style.display = "none";
+    }
+  }
+</script>
 
-  <section id="Certificates">
-    <h2>Certificates</h2>
-    <p>Python from Hackerrank</p>
-  </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Number : 8106984875 </p>
-    <p>Email:venkatakoushik@example.com </p>
-    <p>GitHub: <a href="https://github.com/koushik2654" target="_blank">https://github.com/koushik2654/</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/venkata-koushik" target="_blank">https://www.linkedin.com/in/venkata-koushik</a></p>
-    <a href="Koushik_Resume.pdf" class="button" download>Download Resume</a>
-  </section>
+  <body> 
+    <section id="Home" class="hightlight-section">
+      <div class="hero-content">
+        <h1>
+          <span class="highlight-tech">Software Developer</span>
+          <span class="divider">|</span>
+          <span class="highlight-tech">AI-powered Development</span>
+          <span class="blinking-cursor">|</span>
+        </h1>
+        <p>
+          Building Scalable, Robust, and Efficient Solutions using Python and DSA.
+          Creating cross-platform apps using Flutter with Firebase backend.
+        </p>
+        <div class="hero-buttons">
+          <a href="Koushik_Resume.pdf" class="hero-btn primary" download>Download Resume</a>
+          <a href="#Contact" class="hero-btn secondary">Contact Me</a>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Koushik • All Rights Reserved</p>
-  </footer>
+    <section id="About" class="about-section">
+      <div class="about-inner">
+        <div class="about-image">
+          <h2 class="about-heading">
+            <span class="bar">|</span>
+            <span class="gradient-title">About <strong>Me</strong></span>
+          </h2>
+          <img src="koushik.jpg" alt="Koushik Photo" />
+        </div>
+        <div class="about-content">
+          <p>Hi, I’m <strong>Venkata Koushik R</strong>, a passionate <strong>Software Developer</strong> and Computer Science Engineering student at Presidency University.</p>
+          <p>With hands-on experience in <strong>Flutter</strong>, <strong>Python</strong>, <strong>C++</strong>, and <strong>Data Structures & Algorithms</strong>, I build efficient, scalable, and user-friendly mobile applications.</p>
+          <p>I'm currently focused on building <strong>AI-powered development tools</strong> and full-stack solutions using <strong>Firebase</strong>, <strong>Streamlit</strong>, and modern web technologies.</p>
+        
+          <!-- Read More Button (top) -->
+          <a href="javascript:void(0);" class="read-more" id="readMoreBtn" onclick="toggleMoreText()">READ MORE</a>
+        
+          <!-- Hidden Extra Text -->
+          <div id="more-text" class="hidden-text">
+            <p>I solve problems on <strong>LeetCode</strong> daily, focusing on mastering patterns like Sliding Window, DFS, and Greedy.</p>
+            <p>Currently working toward solving 150+ DSA questions and learning system design fundamentals through real projects.</p>
+        
+            <!-- Read Less Button (inside revealed content) -->
+            <a href="javascript:void(0);" class="read-less" onclick="toggleMoreText()">READ LESS</a>
+          </div>
+        </div>
+        
+        
+      </div>
+    </section>
+  
+    
+
+    <section id="Experience"></section>
+
+    <section id="Projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Sorting visualizer</h3>
+        <p>Built a school library management app using Flutter with pagination and AZ index bar.</p>
+        <a href="https://github.com/koushik2654" target="_blank" class="button">View on GitHub</a>
+      </div>
+      <div class="project">
+        <h3>Fitness Tracker (React)</h3>
+        <p>A gym-focused web app to track workouts, goals, and diet with responsive UI.</p>
+        <a href="#" target="_blank" class="button">View Live</a>
+      </div>
+    </section>
+  
+    <section id="Achievements">
+      <h2>Achievements</h2>
+      <p>
+       Solved 50 Leetcode questions.
+      </p>
+    </section>
+  
+    <section id="Skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill">Flutter</div>
+        <div class="skill">Dart</div>
+        <div class="skill">Html/Css</div>
+        <div class="skill">Tensorflow</div>
+        <div class="skill">Firebase</div>
+        <div class="skill">Streamlit</div>
+      </div>
+    </section>
+  
+    <section id="Contact" class="contact-section">
+      <h2><span class="highlight-bar">|</span> <span class="gradient-text">Get In Touch</span></h2>
+    
+      <div class="contact-container">
+        <form class="contact-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+    
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+    
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+    
+          <button type="submit" class="submit-button">
+            SEND MESSAGE <span class="send-icon">📩</span>
+          </button>
+        </form>
+    
+        <div class="contact-socials">
+          <p>Feel free to reach out to me through the form or via my social channels:</p>
+          <ul>
+            <li><span class="icon">🐙</span> <a href="https://github.com/koushik2654" target="_blank">GitHub</a></li>
+            <li><span class="icon">🔗</span> <a href="https://linkedin.com/in/venkata-koushik" target="_blank">LinkedIn</a></li>
+            <li><span class="icon">💻</span> <a href="https://leetcode.com/u/koushik2606/">LeetCode</a></li>
+            <li><span class="icon">📧</span> <a href="mailto:venkatakoushikravuri@gmail.com">Email</a></li>
+            <li><span class="icon">📞</span> <a href="tel:+918106984875">Phone</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  
+    <footer>
+      <p>© 2025 Koushik • All Rights Reserved</p>
+    </footer>
 
 </body>
 </html>
