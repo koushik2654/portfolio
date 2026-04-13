@@ -1,294 +1,482 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Koushik | Software Developer Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Venkata Koushik Ravuri | Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+[data-theme="dark"]{
+  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;
+  --accent:#6c63ff;--accent2:#ff6584;--accent3:#43e8b0;
+  --text:#f0eff8;--text2:#9999bb;--text3:#555577;
+  --border:#2a2a3a;--card:#141420;
+  --nav-bg:rgba(10,10,15,0.85);
+  --grid-line:rgba(108,99,255,0.04);
+  --glow1:rgba(108,99,255,0.12);--glow2:rgba(67,232,176,0.07);
+  --toggle-bg:#1a1a24;--toggle-border:#2a2a3a;
+  --skill-hover:rgba(255,255,255,0.04);
+  --proj-img:#1a1a24;--form-bg:#1a1a24;--shadow:none;
+}
+
+[data-theme="light"]{
+  --bg:#f8f8fc;--bg2:#f0f0f8;--bg3:#e8e8f4;
+  --accent:#5b52e8;--accent2:#e8475f;--accent3:#1db885;
+  --text:#0a0a1a;--text2:#444466;--text3:#9999bb;
+  --border:#d8d8ec;--card:#ffffff;
+  --nav-bg:rgba(248,248,252,0.92);
+  --grid-line:rgba(91,82,232,0.05);
+  --glow1:rgba(91,82,232,0.06);--glow2:rgba(29,184,133,0.05);
+  --toggle-bg:#ffffff;--toggle-border:#d8d8ec;
+  --skill-hover:rgba(0,0,0,0.03);
+  --proj-img:#ebebf8;--form-bg:#f0f0f8;
+  --shadow:0 2px 20px rgba(0,0,0,0.06);
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;transition:background 0.3s,color 0.3s}
+
+.theme-toggle{background:var(--toggle-bg);border:1px solid var(--toggle-border);width:42px;height:42px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all 0.2s;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--accent);transform:scale(1.05)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background 0.3s,border-color 0.3s}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--text);letter-spacing:-0.5px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:0.875rem;font-weight:500;letter-spacing:0.5px;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent3)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-cta{background:var(--accent);color:#fff;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;font-size:0.875rem;font-weight:500;transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.85}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 3rem;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,var(--glow1) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,var(--glow2) 0%,transparent 70%);pointer-events:none}
+.hero-content{max-width:780px;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.25);color:var(--accent);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;font-weight:500;margin-bottom:2rem;letter-spacing:0.5px}
+.hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.85)}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:1.5rem}
+.hero h1 .name-line{display:block}
+.accent-word{color:var(--accent)}
+.accent2-word{color:var(--accent3)}
+.hero-desc{font-size:1.1rem;color:var(--text2);max-width:560px;margin-bottom:2.5rem;font-weight:300;line-height:1.8}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:0.85rem 2rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(108,99,255,0.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,0.35)}
+.btn-secondary{background:transparent;color:var(--text);padding:0.85rem 2rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.95rem;border:1px solid var(--border);transition:border-color 0.2s,color 0.2s}
+.btn-secondary:hover{border-color:var(--accent3);color:var(--accent3)}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--text);line-height:1}
+.stat-label{font-size:0.8rem;color:var(--text2);margin-top:4px}
+
+section{padding:6rem 3rem;transition:background 0.3s}
+.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.section-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-1.5px;margin-bottom:1rem;line-height:1.1;color:var(--text)}
+.section-sub{color:var(--text2);font-size:1rem;max-width:480px;font-weight:300}
+.section-header{margin-bottom:4rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-text p{color:var(--text2);font-weight:300;margin-bottom:1.2rem;line-height:1.85;font-size:1.02rem}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-highlights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.highlight-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color 0.2s,background 0.3s}
+.highlight-card:hover{border-color:var(--accent)}
+.highlight-label{font-size:0.75rem;color:var(--text2);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:1px}
+.highlight-val{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text)}
+.about-image-wrap{position:relative}
+.about-image-box{background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s}
+.about-image-box img{width:100%;height:100%;object-fit:cover}
+.img-placeholder{font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;color:var(--border)}
+.about-accent{position:absolute;top:-20px;right:-20px;width:120px;height:120px;border:2px solid rgba(108,99,255,0.3);border-radius:20px;z-index:-1}
+.about-accent2{position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:rgba(67,232,176,0.08);border-radius:12px;z-index:-1}
+
+.skills-bg{background:var(--bg2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:transform 0.2s,border-color 0.2s,background 0.3s}
+.skill-cat:hover{transform:translateY(-4px);border-color:var(--accent)}
+.skill-cat-title{font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{background:var(--skill-hover);border:1px solid var(--border);color:var(--text2);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.8rem;transition:color 0.2s,border-color 0.2s}
+.skill-tag:hover{color:var(--accent3);border-color:var(--accent3)}
+.skill-tag.highlight{background:rgba(108,99,255,0.1);border-color:rgba(108,99,255,0.3);color:var(--accent)}
+
+.exp-timeline{position:relative;padding-left:2rem}
+.exp-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),transparent)}
+.exp-item{position:relative;padding-left:2rem;margin-bottom:3.5rem}
+.exp-item::before{content:'';position:absolute;left:-2rem;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.2)}
+.exp-meta{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.exp-company{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text)}
+.exp-period{font-size:0.8rem;color:var(--accent3);background:rgba(67,232,176,0.08);border:1px solid rgba(67,232,176,0.2);padding:0.25rem 0.75rem;border-radius:100px}
+.exp-role{font-size:0.9rem;color:var(--text2);margin-bottom:1.2rem;font-weight:300}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.exp-bullets li{color:var(--text2);font-size:0.92rem;padding-left:1.2rem;position:relative;line-height:1.7;font-weight:300}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:0.8rem;top:3px}
+.exp-bullets li strong{color:var(--text);font-weight:500}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform 0.2s,border-color 0.2s,background 0.3s;display:flex;flex-direction:column}
+.project-card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.project-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.project-img{height:200px;background:var(--proj-img);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:background 0.3s}
+.proj-icon{font-size:3.5rem;opacity:0.7}
+.proj-accent{position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,99,255,0.15),transparent)}
+.proj-accent.green{background:linear-gradient(135deg,rgba(67,232,176,0.15),transparent)}
+.proj-accent.pink{background:linear-gradient(135deg,rgba(255,101,132,0.15),transparent)}
+.project-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.project-tag{font-size:0.7rem;font-weight:500;color:var(--accent);background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);padding:0.2rem 0.6rem;border-radius:4px;letter-spacing:0.5px}
+.project-tag.green{color:var(--accent3);background:rgba(67,232,176,0.08);border-color:rgba(67,232,176,0.2)}
+.project-name{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:0.75rem;color:var(--text)}
+.project-desc{color:var(--text2);font-size:0.88rem;line-height:1.75;font-weight:300;flex:1;margin-bottom:1.5rem}
+.project-modules{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem}
+.module-tag{font-size:0.72rem;background:rgba(67,232,176,0.07);border:1px solid rgba(67,232,176,0.15);color:var(--accent3);padding:0.2rem 0.6rem;border-radius:4px}
+.project-links{display:flex;gap:0.75rem;margin-top:auto}
+.proj-link{font-size:0.8rem;color:var(--text2);text-decoration:none;border:1px solid var(--border);padding:0.4rem 1rem;border-radius:6px;transition:color 0.2s,border-color 0.2s}
+.proj-link:hover{color:var(--accent3);border-color:var(--accent3)}
+.project-card.featured .project-img{height:auto;min-height:280px}
+.project-card.featured .project-body{padding:2rem}
+
+.contact-bg{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-info p{color:var(--text2);font-weight:300;font-size:1rem;line-height:1.8;margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:1rem}
+.contact-link{display:flex;align-items:center;gap:1rem;color:var(--text2);text-decoration:none;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:10px;transition:border-color 0.2s,color 0.2s,background 0.3s;font-size:0.9rem}
+.contact-link:hover{border-color:var(--accent3);color:var(--accent3)}
+.contact-link-icon{width:36px;height:36px;border-radius:8px;background:rgba(108,99,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--accent)}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:background 0.3s,border-color 0.3s}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:0.8rem;color:var(--text2);margin-bottom:0.5rem;letter-spacing:0.5px;font-weight:500}
+.form-group input,.form-group textarea{width:100%;background:var(--form-bg);border:1px solid var(--border);color:var(--text);padding:0.85rem 1rem;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s,background 0.3s,color 0.3s;resize:vertical}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group textarea{min-height:120px}
+.form-btn{width:100%;background:var(--accent);color:#fff;border:none;padding:0.9rem;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;cursor:pointer;transition:opacity 0.2s}
+.form-btn:hover{opacity:0.85}
+
+footer{padding:2.5rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;transition:border-color 0.3s}
+.footer-text{font-size:0.85rem;color:var(--text3)}
+.footer-socials{display:flex;gap:1rem}
+.footer-social{color:var(--text2);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.footer-social:hover{color:var(--accent3)}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.5rem}
+  .hero{padding:0 1.5rem}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .about-image-wrap{display:none}
+  .project-card.featured{grid-column:span 1;display:flex;flex-direction:column}
+  .projects-grid{grid-template-columns:1fr}
+  .hero-stats{gap:2rem}
+  footer{padding:2rem 1.5rem}
+}
+</style>
 </head>
+<body>
 
-<header class="topbar">
-  <div class="logo">Koushik <strong>RV</strong></div>
-
-  <nav class="nav-links">
-    <a href="#Home" class="active">Home</a>
-    <a href="#About">About</a>
-    <a href="#Skills">Skills</a>
-    <a href="#Projects">Projects</a>
-    <a href="#Experience">Experience</a>
-    <a href="#Contact">Contact</a>
-  </nav>
-
-  <div class="toggle-theme">
-    <label class="switch">
-      <!-- <input type="checkbox" id="theme-toggle">
-      <span class="slider"></span> -->
-    </label>
+<nav>
+  <div class="nav-logo">K<span>.</span>Ravuri</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle">☀️</button>
+    <a href="Koushik_Resume.pdf" class="nav-cta" target="_blank">Resume</a>
   </div>
-</header>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available for opportunities</div>
+    <h1>
+      <span class="name-line">Venkata <span class="accent-word">Koushik</span></span>
+      <span class="name-line">Ravuri</span>
+      <span class="name-line" style="font-size:clamp(1.4rem,3vw,2.2rem);color:var(--text2);font-weight:400;letter-spacing:-0.5px;margin-top:0.5rem;display:block">Software <span class="accent2-word">Developer</span></span>
+    </h1>
+    <p class="hero-desc">Building production-grade web and mobile applications across the full stack. Specialized in .NET Core, Flutter, and GraphQL — shipping features that reach <strong style="color:var(--text)">600K+ users</strong> daily.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">600K+</div><div class="stat-label">Active Users Served</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-label">Production Apps</div></div>
+      <div><div class="stat-num">1+</div><div class="stat-label">Years Experience</div></div>
+      <div><div class="stat-num">150+</div><div class="stat-label">LeetCode Problems</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header">
+    <div class="section-tag">Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>Software Developer</strong> based in Hyderabad, India with 1+ year of experience at MyClass Board, where I work on production applications serving hundreds of thousands of users every day.</p>
+      <p>I work across the full stack — building <strong>.NET Core APIs</strong> with MVC architecture on the backend, and crafting cross-platform mobile experiences with <strong>Flutter</strong> on the front end. I take pride in owning features end-to-end: from requirements gathering and technical design all the way to deployment and post-release support.</p>
+      <p>I believe in clean, modular, and well-documented code. I actively participate in <strong>code reviews</strong>, enforce quality standards, and help onboard new team members — because great software is built by great teams, not lone developers.</p>
+      <p>When I'm not building, I'm sharpening my problem-solving on <strong>LeetCode</strong> — focusing on Trees, Graphs, and Dynamic Programming with 150+ problems solved.</p>
+      <div class="about-highlights">
+        <div class="highlight-card"><div class="highlight-label">Degree</div><div class="highlight-val">B.Tech CSE</div></div>
+        <div class="highlight-card"><div class="highlight-label">University</div><div class="highlight-val">Presidency</div></div>
+        <div class="highlight-card"><div class="highlight-label">Location</div><div class="highlight-val">Hyderabad</div></div>
+        <div class="highlight-card"><div class="highlight-label">Status</div><div class="highlight-val" style="color:var(--accent3)">Open to Work</div></div>
+      </div>
+    </div>
+    <div class="about-image-wrap">
+      <div class="about-accent"></div>
+      <div class="about-accent2"></div>
+      <div class="about-image-box">
+        <img src="koushik.jpg" alt="Venkata Koushik Ravuri" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="img-placeholder" style="display:none;width:100%;height:100%;align-items:center;justify-content:center">VK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-bg">
+  <div class="section-header">
+    <div class="section-tag">What I Know</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-sub">Technologies and tools I work with in production every day.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-cat">
+      <div class="skill-cat-title">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">C#</span><span class="skill-tag highlight">Dart</span>
+        <span class="skill-tag">C++</span><span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span><span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Backend & APIs</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">.NET Core</span><span class="skill-tag highlight">ASP.NET MVC</span>
+        <span class="skill-tag">REST</span><span class="skill-tag">GraphQL</span>
+        <span class="skill-tag">Node.js</span><span class="skill-tag">Firebase</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Databases</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">PostgreSQL</span><span class="skill-tag highlight">SQL Server</span>
+        <span class="skill-tag">Redis</span><span class="skill-tag">Firestore</span><span class="skill-tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Mobile</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Flutter</span><span class="skill-tag">Bloc</span>
+        <span class="skill-tag">GetX</span><span class="skill-tag">Provider</span>
+        <span class="skill-tag">Streams</span><span class="skill-tag">Play Store</span><span class="skill-tag">App Store</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">System Design</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MVC Architecture</span><span class="skill-tag">Caching</span>
+        <span class="skill-tag">Indexing</span><span class="skill-tag">CI/CD</span><span class="skill-tag">Modular Design</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span><span class="skill-tag">Visual Studio</span>
+        <span class="skill-tag">Gradle</span><span class="skill-tag">Figma</span>
+        <span class="skill-tag">Postman</span><span class="skill-tag">Firebase Console</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-header">
+    <div class="section-tag">Where I've Worked</div>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-meta">
+        <span class="exp-company">MyClass Board</span>
+        <span class="exp-period">Feb 2025 — Present</span>
+      </div>
+      <div class="exp-role">Software Developer · Hyderabad, India</div>
+      <ul class="exp-bullets">
+        <li>Maintained and scaled <strong>30+ production applications</strong> including 2 flagship apps serving <strong>600K+ active users</strong>, ensuring high availability and reliability at scale.</li>
+        <li>Exercised <strong>end-to-end ownership</strong> of assigned modules — full responsibility from requirements gathering and technical design through implementation, testing, deployment, and post-release support.</li>
+        <li>Designed and developed <strong>RESTful APIs</strong> using <strong>.NET Core with MVC architecture</strong> to power the Parent Portal (web and mobile), handling student data, notifications, and attendance workflows.</li>
+        <li>Optimized GraphQL queries, <strong>reducing API calls by 20%</strong> and improving reliability in low-network environments.</li>
+        <li>Reduced Android app deployment time from <strong>multiple days to under 1 hour</strong> by optimizing Gradle build configurations and streamlining CI/CD pipelines.</li>
+        <li>Conducted <strong>code reviews</strong> and enforced <strong>code quality standards</strong>; maintained comprehensive technical documentation including inline comments, API contracts, and onboarding guides.</li>
+        <li>Provided <strong>peer support and onboarded</strong> new team members through domain knowledge sharing, code review guidance, and workflow documentation.</li>
+        <li>Applied state management patterns (<strong>Bloc, Streams, GetX</strong>) to build modular, maintainable architectures; contributed to unit and widget testing.</li>
+        <li>Managed <strong>end-to-end publishing lifecycle</strong> for multiple apps on Google Play Store and Apple App Store.</li>
+      </ul>
+    </div>
+    <div class="exp-item" style="margin-bottom:0">
+      <div class="exp-meta">
+        <span class="exp-company">Presidency University</span>
+        <span class="exp-period">2020 — 2024</span>
+      </div>
+      <div class="exp-role">B.Tech in Computer Science & Engineering · Bangalore, India · CGPA: 7.34/10</div>
+      <ul class="exp-bullets">
+        <li>Specialized in Software Development, Data Structures & Algorithms, and system design fundamentals.</li>
+        <li>Participated in coding competitions and hackathons; built multiple projects in Python, C++, and Flutter.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background:var(--bg2)">
+  <div class="section-header">
+    <div class="section-tag">What I've Built</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Production work and personal projects that demonstrate real-world impact.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card featured">
+      <div class="project-img">
+        <div class="proj-accent"></div>
+        <div class="proj-icon">🏫</div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Flutter</span><span class="project-tag">.NET Core</span>
+          <span class="project-tag">MVC</span><span class="project-tag">GraphQL</span>
+          <span class="project-tag">Firebase</span><span class="project-tag">SQL Server</span>
+        </div>
+        <div class="project-name">MyClass Board — Parent Portal</div>
+        <p class="project-desc">A cross-platform mobile and web application bridging schools and parents, serving 600K+ active users. Took complete ownership of 4 key modules — independently designing, building, testing, and deploying each feature from scratch.</p>
+        <div class="project-modules">
+          <span class="module-tag">Attendance</span><span class="module-tag">School Store</span>
+          <span class="module-tag">Announcements</span><span class="module-tag">Class Diary</span>
+        </div>
+        <p class="project-desc" style="margin-bottom:0;font-size:0.82rem">Architected backend services using .NET Core MVC, wrote RESTful APIs consumed by both web and mobile, designed SQL Server schemas, and integrated Firebase for real-time push notifications.</p>
+        <div class="project-links" style="margin-top:1.5rem">
+          <a href="https://github.com/koushik2654" class="proj-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img">
+        <div class="proj-accent green"></div>
+        <div class="proj-icon">🔗</div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag green">Node.js</span><span class="project-tag green">PostgreSQL</span>
+          <span class="project-tag green">Redis</span><span class="project-tag green">Python</span>
+        </div>
+        <div class="project-name">Scalable URL Shortener</div>
+        <p class="project-desc">High-throughput backend service transforming long URLs into unique aliases using Base62 encoding. Built with a PostgreSQL indexing strategy for minimal latency, Redis caching to reduce query load, and a custom analytics dashboard tracking click-through rates and geographic distribution.</p>
+        <div class="project-links">
+          <a href="https://github.com/koushik2654" class="proj-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img">
+        <div class="proj-accent pink"></div>
+        <div class="proj-icon">🩺</div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag" style="color:var(--accent2);background:rgba(255,101,132,0.08);border-color:rgba(255,101,132,0.2)">Flutter</span>
+          <span class="project-tag" style="color:var(--accent2);background:rgba(255,101,132,0.08);border-color:rgba(255,101,132,0.2)">Firebase</span>
+          <span class="project-tag" style="color:var(--accent2);background:rgba(255,101,132,0.08);border-color:rgba(255,101,132,0.2)">GetX</span>
+          <span class="project-tag" style="color:var(--accent2);background:rgba(255,101,132,0.08);border-color:rgba(255,101,132,0.2)">Dart</span>
+        </div>
+        <div class="project-name">Doc Easy — Doctor Appointment App</div>
+        <p class="project-desc">Cross-platform doctor appointment scheduling app built independently from scratch. Features Firebase Authentication, real-time Firestore listeners for live slot availability, and GetX-based state management for a fast, responsive experience on both Android and iOS.</p>
+        <div class="project-links">
+          <a href="https://github.com/koushik2654" class="proj-link" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-bg">
+  <div class="section-header">
+    <div class="section-tag">Let's Talk</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-sub">Open to new opportunities, collaborations, or just a good tech conversation.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>I'm currently open to Software Developer roles — especially .NET web development and Flutter mobile positions. If you're looking for someone who takes ownership, ships quality code, and works well in teams, let's connect.</p>
+      <div class="contact-links">
+        <a href="mailto:venkatakoushikravuri@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <div><div style="font-size:0.75rem;color:var(--text2);margin-bottom:2px">Email</div><div style="color:var(--text);font-size:0.9rem">venkatakoushikravuri@gmail.com</div></div>
+        </a>
+        <a href="https://linkedin.com/in/venkata-koushik" class="contact-link" target="_blank">
+          <div class="contact-link-icon" style="font-size:0.85rem;font-weight:700">in</div>
+          <div><div style="font-size:0.75rem;color:var(--text2);margin-bottom:2px">LinkedIn</div><div style="color:var(--text);font-size:0.9rem">venkata-koushik</div></div>
+        </a>
+        <a href="https://github.com/koushik2654" class="contact-link" target="_blank">
+          <div class="contact-link-icon" style="font-size:0.85rem;font-weight:700">GH</div>
+          <div><div style="font-size:0.75rem;color:var(--text2);margin-bottom:2px">GitHub</div><div style="color:var(--text);font-size:0.9rem">koushik2654</div></div>
+        </a>
+        <a href="https://leetcode.com/u/koushik2606/" class="contact-link" target="_blank">
+          <div class="contact-link-icon" style="font-size:0.75rem;font-weight:700">LC</div>
+          <div><div style="font-size:0.75rem;color:var(--text2);margin-bottom:2px">LeetCode</div><div style="color:var(--text);font-size:0.9rem">koushik2606</div></div>
+        </a>
+        <a href="tel:+918106984875" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div><div style="font-size:0.75rem;color:var(--text2);margin-bottom:2px">Phone</div><div style="color:var(--text);font-size:0.9rem">+91 8106984875</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"/></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me about the opportunity..."></textarea></div>
+      <button class="form-btn">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-text">© 2025 Venkata Koushik Ravuri · All rights reserved</div>
+  <div class="footer-socials">
+    <a href="https://github.com/koushik2654" class="footer-social" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/venkata-koushik" class="footer-social" target="_blank">LinkedIn</a>
+    <a href="https://leetcode.com/u/koushik2606/" class="footer-social" target="_blank">LeetCode</a>
+    <a href="mailto:venkatakoushikravuri@gmail.com" class="footer-social">Email</a>
+  </div>
+</footer>
 
 <script>
-  function toggleMoreText() {
-    const moreText = document.getElementById("more-text");
-    const readMoreBtn = document.getElementById("readMoreBtn");
-
-    if (moreText.classList.contains("show")) {
-      moreText.classList.remove("show");
-      readMoreBtn.style.display = "inline-block";
-    } else {
-      moreText.classList.add("show");
-      readMoreBtn.style.display = "none";
-    }
-  }
+const toggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+const saved = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', saved);
+toggle.textContent = saved === 'dark' ? '☀️' : '🌙';
+toggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('theme', next);
+});
 </script>
-
-
-  <body> 
-    <section id="Home" class="hightlight-section">
-      <div class="hero-content">
-        <h1>
-          <span class="highlight-tech">Software Developer</span>
-          <span class="divider">|</span>
-          <span class="highlight-tech">AI-powered Development</span>
-          <span class="blinking-cursor">|</span>
-        </h1>
-        <p>
-          Building Scalable, Robust, and Efficient Solutions using Python and DSA.
-          Creating cross-platform apps using Flutter with Firebase backend.
-        </p>
-        <div class="hero-buttons">
-          <a href="Koushik_Resume.pdf" class="hero-btn primary" download>Download Resume</a>
-          <a href="#Contact" class="hero-btn secondary">Contact Me</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="About" class="about-section">
-      <div class="about-inner">
-        <div class="about-image">
-          <h2 class="about-heading">
-            <span class="bar">|</span>
-            <span class="gradient-title">About <strong>Me</strong></span>
-          </h2>
-          <img src="koushik.jpg" alt="Koushik Photo" />
-        </div>
-        <div class="about-content">
-          <p>Hi, I’m <strong>Venkata Koushik R</strong>, a passionate <strong>Software Developer</strong> and Computer Science Engineering student at Presidency University.</p>
-          <p>With hands-on experience in <strong>Flutter</strong>, <strong>Python</strong>, <strong>C++</strong>, and <strong>Data Structures & Algorithms</strong>, I build efficient, scalable, and user-friendly mobile applications.</p>
-          <p>I'm currently focused on building <strong>AI-powered development tools</strong> and full-stack solutions using <strong>Firebase</strong>, <strong>Streamlit</strong>, and modern web technologies.</p>
-        
-          <!-- Read More Button (top) -->
-          <a href="javascript:void(0);" class="read-more" id="readMoreBtn" onclick="toggleMoreText()">READ MORE</a>
-        
-          <!-- Hidden Extra Text -->
-          <div id="more-text" class="hidden-text">
-            <p>I solve problems on <strong>LeetCode</strong> daily, focusing on mastering patterns like Sliding Window, DFS, and Greedy.</p>
-            <p>Currently working toward solving 150+ DSA questions and learning system design fundamentals through real projects.</p>
-        
-            <!-- Read Less Button (inside revealed content) -->
-            <a href="javascript:void(0);" class="read-less" onclick="toggleMoreText()">READ LESS</a>
-          </div>
-        </div>
-        
-        
-      </div>
-    </section>
-  
-   
-  
-    <section id="Skills" class="skills-section">
-      <div class="skills-wrapper">
-        <h2 class="skills-title">
-          <span class="highlight-bar">|</span>
-          <span class="gradient-text">My Skills</span>
-        </h2>
-    
-        <div class="skills-grid">
-          <div class="skill-card">
-            <h3><span class="icon">💻</span> <span class="gradient-text">Languages</span></h3>
-            <div class="skill-tags">
-              <span>Python</span>
-              <span>C++</span>
-              <span>Java</span>
-              <span>Dart</span>
-            </div>
-          </div>
-    
-          <div class="skill-card">
-            <h3><span class="icon">🖥️</span> <span class="gradient-text">Frontend</span></h3>
-            <div class="skill-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>Flutter</span>
-            </div>
-          </div>
-    
-          <div class="skill-card">
-            <h3><span class="icon">🛠️</span> <span class="gradient-text">Backend</span></h3>
-            <div class="skill-tags">
-              <span>Flask</span>
-              <span>ReatApi</span>
-              <span>Firebase</span>
-            </div>
-          </div>
-    
-          <div class="skill-card">
-            <h3><span class="icon">🗄️</span> <span class="gradient-text">Databases</span></h3>
-            <div class="skill-tags">
-              <span>PostgreSQL</span>
-              <span>SQL</span>
-              <span>MongoDB</span>
-            </div>
-          </div>
-    
-          <div class="skill-card">
-            <h3><span class="icon">🔗</span> <span class="gradient-text">Microservices</span></h3>
-            <div class="skill-tags">
-              <span>Docker</span>
-              <span>API Gateway</span>
-              <span>PostMan</span>
-            </div>
-          </div>
-    
-          <div class="skill-card">
-            <h3><span class="icon">⚙️</span> <span class="gradient-text">Technologies</span></h3>
-            <div class="skill-tags">
-              <span>REST</span>
-              <span>GraphQL</span>
-              <span>Firebase</span>
-              <span>Git</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="Projects" class="projects-section">
-      <h2 class="section-title">My <span>Projects</span></h2>
-      <div class="projects-container">
-    
-        <!-- Project Card 1 -->
-        <!-- <div class="project-card">
-          <img src="images/food.jpg" alt="FoodSphere" />
-          <h3>FoodSphere</h3>
-          <div class="tech-tags">
-            <span>Java</span><span>Spring Boot</span><span>JWT</span>
-            <span>PostgreSQL</span><span>React</span><span>Stripe</span><span>AWS</span>
-          </div>
-          <p>
-            Scalable Food Ordering Web App enabling seamless restaurant-customer interaction, real-time order management, Stripe payments, and admin dashboard with JWT.
-          </p>
-          <div class="project-links">
-            <a href="#" target="_blank">GitHub</a>
-            <a href="#" target="_blank">Live Demo</a>
-          </div>
-        </div> -->
-    
-        <!-- Project Card 2 -->
-        <div class="project-card">
-          <img src="images/visualizer.jpg" alt="Sorting Visualizer Pro" />
-          <h3>Sorting Visualizer Pro</h3>
-          <div class="tech-tags">
-            <span>HTML</span><span>CSS</span><span>JavaScript</span>
-            <span>Data Structures</span><span>Algorithms</span>
-          </div>
-          <p>
-            Sorting algorithm visualizer with adjustable array size, animation speed, and multiple algorithm options to understand sorting step-by-step.
-          </p>
-          <div class="project-links">
-            <a href="#https://github.com/koushik2654" target="_blank">GitHub</a>
-            <a href="#" target="_blank">Live Demo</a>
-          </div>
-        </div>
-    
-        <!-- Project Card 3 -->
-        <!-- <div class="project-card">
-          <img src="images/task.jpg" alt="Task Management" />
-          <h3>Task Management</h3>
-          <div class="tech-tags">
-            <span>Spring Boot</span><span>Microservices</span><span>JWT</span><span>PostgreSQL</span>
-          </div>
-          <p>
-            A task management platform with secure login, PostgreSQL-backed storage, and clean task tracking interface for team collaboration.
-          </p>
-          <div class="project-links">
-            <a href="#" target="_blank">GitHub</a>
-          </div>
-        </div> -->
-    
-      </div>
-    </section>
-
-
-    
-    <section id="Experience" class="timeline-section">
-      <h2><span class="highlight-bar">|</span> <span class="gradient-text">Professional & Academic Experience</span></h2>
-    
-      <div class="timeline-wrapper">
-        <div class="timeline-container left">
-          <div class="timeline-content">
-            <h3 class="exp-title">Software Developer</h3>
-            <p class="exp-subtitle">MY Class Board | <em>Feb 2025 - present</em></p>
-            <ul>
-              <li>Developing and maintaining cross-platform mobile applications using Flutter./li>
-              <li>Integrated RESTful APIs and implemented efficient state management (Get X)./li>
-              <li>Collaborated with designers and backend teams to deliver user-friendly and scalable app./li>
-              <li>Followed clean architecture principles to write modular, maintainable code..</li>
-            </ul>
-          </div>
-        </div>
-    
-        <div class="timeline-container right">
-          <div class="timeline-content">
-            <h3 class="exp-title">Bachelor of Computer Science</h3>
-            <p class="exp-subtitle">Presidency University,Bangalore <em>(2020–2024)</em></p>
-            <ul>
-              <li>Specialized in Software Development and Data Structures.</li>
-              <li>Participated in coding competitions and hackathons.</li>
-              <li>Completed several project in python,c++</li>
-              <li>Build several clone application using html,css and javascript</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <section id="Contact" class="contact-section">
-      <h2><span class="highlight-bar">|</span> <span class="gradient-text">Get In Touch</span></h2>
-    
-      <div class="contact-container">
-        <form class="contact-form">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
-    
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-    
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-    
-          <button type="submit" class="submit-button">
-            SEND MESSAGE <span class="send-icon">📩</span>
-          </button>
-        </form>
-    
-        <div class="contact-socials">
-          <p>Feel free to reach out to me through the form or via my social channels:</p>
-          <ul>
-            <li><span class="icon">🐙</span> <a href="https://github.com/koushik2654" target="_blank">GitHub</a></li>
-            <li><span class="icon">🔗</span> <a href="https://linkedin.com/in/venkata-koushik" target="_blank">LinkedIn</a></li>
-            <li><span class="icon">💻</span> <a href="https://leetcode.com/u/koushik2606/">LeetCode</a></li>
-            <li><span class="icon">📧</span> <a href="mailto:venkatakoushikravuri@gmail.com">Email</a></li>
-            <li><span class="icon">📞</span> <a href="tel:+918106984875">Phone</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  
-    <footer>
-      <p>© 2025 Koushik • All Rights Reserved</p>
-    </footer>
-
 </body>
 </html>
